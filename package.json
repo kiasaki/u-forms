@@ -6,9 +6,13 @@
   "author": "Frederic Gingras <frederic@gingras.cc>",
   "license": "MIT",
   "dependencies": {
+    "co-views": "^2.1.0",
+    "hogan.js": "^3.0.2",
+    "jsonwebtoken": "^7.2.1",
     "knex": "^0.12.6",
     "koa": "^1.2.4",
-    "pg": "^6.1.2"
+    "pg": "^6.1.2",
+    "ramda": "^0.22.1"
   },
   "devDependencies": {
     "eslint": "^3.12.2"

@@ -6,6 +6,9 @@
   "parserOptions": {
     "ecmaVersion": 6
   },
+  "globals": {
+    "Promise": true
+  },
   "extends": "eslint:recommended",
   "rules": {
     "indent": ["error", 4],
