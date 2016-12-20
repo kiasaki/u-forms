@@ -4,9 +4,34 @@ _HTML form or Feedback widget => Database record and Email notification_
 
 ## Intro
 
+**μForms** is a simple application you can self host that acts as a form backend or endpoint.
+
+It enables you to have forms in completely static websites and still collect the information
+entered.
+
+Common use cases include a contact form collecting name, email and a message that **μForms**
+will save (and, optionally, notify you via email). An other use case could be a simple feedback
+widget located at the bottom of all you website's pages for users to report bugs or suggest
+features.
+
 ## Features
 
+- Save any form fields
+- Self-host
+- Email notifications
+- Simple to use and operate
+
 ## Running
+
+**μForms** is a Node.js application, to run it you can simply invoke `index.js` like so:
+
+```
+node --harmony index.js
+```
+
+Now for the application to run correctly you need to have a few extra things setup (like
+node.js dependencies and a postgresql database), read the section bellow ("Developing") to know
+how to set those up.
 
 ## Developing
 
@@ -22,6 +47,15 @@ user=# CREATE ROLE "uforms" WITH SUPERUSER LOGIN PASSWORD 'uforms';
 user=# CREATE DATABASE "uforms" WITH OWNER "uforms";
 [...]
 user=# \q
+```
+
+Now let's fetch the dependencies before we run any code that requires them:
+
+```
+$ yarn
+yarn install v0.18.1
+[1/9] 🔍  Resolving packages...
+[...]
 ```
 
 Next up, let's run the migrations against that database:

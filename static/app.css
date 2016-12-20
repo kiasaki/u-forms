@@ -9,7 +9,7 @@ html, body {
   margin: 0;
   height: 100%;
   color: #222;
-  background: #ffe;
+  background: #f2f2fa;
 
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -44,17 +44,11 @@ input[type="text"] {
   clear: both;
 }
 
-.container {
-  width: 90%;
-  max-width: 110rem;
-  margin: 0 auto;
-}
-
 .title {
   font-weight: 300;
   font-size: 3.2rem;
   width: 6rem;
-  border-bottom: 4px solid #40657c;
+  border-bottom: 4px solid #222;
 }
 
 .btn {
@@ -75,15 +69,30 @@ input[type="text"] {
 .page-header,
 .page-content,
 .page-footer {
-  max-width: 1200px;
+  max-width: 110rem;
   margin: 0 auto;
 
   background: #fff;
-  border-left: 1px solid #eed;
-  border-right: 1px solid #eed;
+  border-left: 1px solid #e2e2ea;
+  border-right: 1px solid #e2e2ea;
 }
 .container {
   width: 90%;
-  max-width: 900px;
+  max-width: 90rem;
   margin: 0 auto;
+}
+
+.page-header h1 {
+  font-weight: 300;
+  font-size: 4rem;
+  margin: 0;
+  line-height: 7rem;
+}
+
+.page-content {
+  padding: 0.1rem 0;
+}
+
+.page-footer .container {
+  padding: 2.4rem 0;
 }
