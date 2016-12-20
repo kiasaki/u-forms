@@ -1,5 +1,5 @@
 run:
-	node index.js
+	node --harmony index.js
 
 deps:
 	yarn

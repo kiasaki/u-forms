@@ -1,0 +1,89 @@
+/*
+ * uForms styles
+ *
+ */
+html, body {
+  font-size: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  margin: 0;
+  height: 100%;
+  color: #222;
+  background: #ffe;
+
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  font-size: 1.8rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #4cc4ec;
+}
+
+img {
+  max-width: 100%;
+}
+
+input[type="text"] {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #aaa;
+  border-radius: 0.2rem;
+  font-size: 1.6rem;
+  outline: none;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container {
+  width: 90%;
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 300;
+  font-size: 3.2rem;
+  width: 6rem;
+  border-bottom: 4px solid #40657c;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #f9b575;
+  border-radius: 0.2rem;
+  background: #f9b575;
+  font-size: 1.6rem;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/*
+ * layout
+ */
+.page-header,
+.page-content,
+.page-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  background: #fff;
+  border-left: 1px solid #eed;
+  border-right: 1px solid #eed;
+}
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}

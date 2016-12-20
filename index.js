@@ -1,9 +1,8 @@
 const path = require("path");
-const koa = require("koa");
-const views = require("co-views");
+const Koa = require("koa");
 const log = require("./library/logger").log;
 
-const app = koa();
+const app = new Koa();
 const container = app.context.container = require("./container");
 
 // Load config & set defaults
@@ -22,21 +21,33 @@ container.load(require("./library/jwt"));
 
 // Configure application
 app.keys = [config.get("new_secret"), config.get("old_secret"),];
-app.context.render = views(path.join(__dirname, "/views"), {ext: "html",});
+app.use(require("./library/middlewares/views")({
+    root: path.join(__dirname, "views"),
+    engineName: "hogan",
+    options: {
+        partials: {
+            header: "includes/header",
+            footer: "includes/footer",
+        },
+    },
+}));
+app.use(require("./library/middlewares/static")("static"));
 
 app.on("error", function(err) {
-    log("error", "server error", err);
+    log("error", "server error", {error: err.message, stack: err.stack,});
 });
 
-app.use(function*(next) {
+app.use(async function(ctx, next) {
     var start = new Date;
-    yield next;
+    await next();
     var ms = new Date - start;
-    log("info", "request", {method: this.method, url: this.url, ms,});
+    log("info", "request", {method: ctx.method, url: ctx.url, ms,});
 });
 
-app.use(function*() {
-    this.body = "Hello World";
+app.use(async function(ctx) {
+    await ctx.render("index", {
+        message: "m",
+    });
 });
 
 app.listen(config.get("port"));
