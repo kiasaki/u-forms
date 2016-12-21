@@ -21,6 +21,7 @@ config.set("root", __dirname);
 config.loadFromEnv();
 
 // Load helpers and services
+container.load(require("./library/db"));
 container.load(require("./library/jwt"));
 
 // Configure application
