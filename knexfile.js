@@ -5,9 +5,9 @@ module.exports = {
         user:     "uforms",
         password: "uforms",
     },
-    pool: {min: 2, max: 10,},
+    pool: {min: 2, max: 10},
     migrations: {
-      tableName: "migrations",
-      directory: "./data/migrations",
+        tableName: "migrations",
+        directory: "./data/migrations",
     },
 };

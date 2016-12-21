@@ -16,13 +16,13 @@ class Jwt {
     verify(token) {
         return promisify(jwt.verify.bind(jwt))(
             token, this.config.get("jwt_secret"), {
-                algorithms: ["HS256",],
+                algorithms: ["HS256"],
             }
         );
     }
 }
 
 Jwt.dependencyName = "jwt";
-Jwt.dependencies = ["config",];
+Jwt.dependencies = ["config"];
 
 module.exports = Jwt;

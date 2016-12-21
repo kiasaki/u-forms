@@ -1,4 +1,4 @@
-const {forEach,} = require("ramda");
+const {forEach} = require("ramda");
 
 exports.validate = function (spec) {
     const errors = [];

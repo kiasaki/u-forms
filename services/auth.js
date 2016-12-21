@@ -17,6 +17,6 @@ class AuthService {
 }
 
 AuthService.dependencyName = "services:auth";
-AuthService.dependencies = ["config",];
+AuthService.dependencies = ["config"];
 
 module.exports = AuthService;

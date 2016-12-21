@@ -12,7 +12,7 @@ class DB {
 
     loggingFn(config) {
         return function dbLoggingFn(data) {
-            const logData = {query: data.sql,};
+            const logData = {query: data.sql};
             if (config.get("node_env") !== "production") {
                 logData.bindings = data.bindings;
             }
@@ -48,6 +48,6 @@ class DB {
 }
 
 DB.dependencyName = "db";
-DB.dependencies = ["config",];
+DB.dependencies = ["config"];
 
 module.exports = DB;

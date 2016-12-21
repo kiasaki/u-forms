@@ -5,7 +5,7 @@ deps:
 	yarn
 
 lint:
-	./node_modules/.bin/eslint .
+	./node_modules/.bin/eslint --fix .
 
 migrate_up:
 	./node_modules/.bin/knex migrate:latest

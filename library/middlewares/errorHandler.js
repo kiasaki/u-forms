@@ -6,7 +6,7 @@ async function errorHandlerMiddleware(ctx, next) {
     try {
         await next();
     } catch (err) {
-        log("error", "server error", {error: err.message, stack: err.stack,});
+        log("error", "server error", {error: err.message, stack: err.stack});
 
         // Render custom 500 page
         if (!err.status || err.status === 500) {
@@ -17,7 +17,7 @@ async function errorHandlerMiddleware(ctx, next) {
                 data.stack = err.stack;
             }
 
-            await ctx.render("500", data);
+            await ctx.render("error/500", data);
         }
     }
 }

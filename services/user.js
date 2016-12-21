@@ -6,20 +6,19 @@ class UserService {
     }
 
     async findById(id) {
-        return await this.db.findWhere(User, {id,});
+        return await this.db.findWhere(User, {id});
     }
 
     async findByEmail(email) {
-        return await this.db.findWhere(User, {email,});
+        return await this.db.findWhere(User, {email});
     }
 
-    async create(user) {
-        return await this.db.create(User, user);
+    async create(entity) {
+        return await this.db.create(User, entity);
     }
 }
 
 UserService.dependencyName = "services:user";
-UserService.dependencies = ["db",];
+UserService.dependencies = ["db"];
 
 module.exports = UserService;
-

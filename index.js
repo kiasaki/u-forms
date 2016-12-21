@@ -26,9 +26,10 @@ container.load(require("./library/db"));
 container.load(require("./library/jwt"));
 container.load(require("./services/auth"));
 container.load(require("./services/user"));
+container.load(require("./services/form"));
 
 // Pre-Request Middlewares
-app.keys = [config.get("new_secret"), config.get("old_secret"),];
+app.keys = [config.get("new_secret"), config.get("old_secret")];
 app.use(require("./library/middlewares/globalTemplateState"));
 app.use(require("./library/middlewares/errorHandler"));
 app.use(require("./library/middlewares/views")({
@@ -62,12 +63,13 @@ router.post("/reset", koaBody, authController.reset);
 router.get("/signout", authController.signout);
 
 const formsController = container.create(require("./controllers/forms"));
-router.get("/forms/create", koaBody, requireUser, formsController.create);
+router.get("/forms/create", requireUser, formsController.create);
+router.post("/forms/create", koaBody, requireUser, formsController.create);
 
 // Post-Request Middlewares
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.use(async function(ctx) {await ctx.render("404");});
+app.use(async function(ctx) {await ctx.render("error/404");});
 
 if (!module.parent) {
     app.listen(config.get("port"));

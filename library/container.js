@@ -29,7 +29,7 @@ class Container {
     }
 
     set(name, instance) {
-        log("debug", "container:set", {id: this.id, key: name,});
+        log("debug", "container:set", {id: this.id, key: name});
         this.contents[name] = instance;
         return instance;
     }

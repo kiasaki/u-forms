@@ -1,4 +1,4 @@
-const {clone, merge,} = require("ramda");
+const {clone, merge} = require("ramda");
 const path = require("path");
 const consolidate = require("consolidate");
 

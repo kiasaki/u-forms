@@ -20,6 +20,6 @@ class MarketingController {
     }
 }
 
-MarketingController.dependencies = ["container",];
+MarketingController.dependencies = ["container"];
 
 module.exports = MarketingController;

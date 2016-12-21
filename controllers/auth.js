@@ -17,7 +17,7 @@ class AuthController {
         const data = {};
 
         if (ctx.method === "POST") {
-            const {email, password,} = ctx.request.body;
+            const {email, password} = ctx.request.body;
             const user = await this.userService.findByEmail(email);
 
             let passwordMatches = false;
@@ -28,10 +28,10 @@ class AuthController {
 
             if (!user || !passwordMatches) {
                 data.email = email;
-                data.errors = ["Incorrect username or password.",];
+                data.errors = ["Incorrect username or password."];
             } else {
                 // Set session token
-                ctx.cookies.set("session_user_id", user.id, {signed: true, maxAge,});
+                ctx.cookies.set("session_user_id", user.id, {signed: true, maxAge});
                 // Redirect
                 ctx.redirect("/");
             }
@@ -44,11 +44,11 @@ class AuthController {
         let data = {};
 
         if (ctx.method === "POST") {
-            const {name, email, password,} = ctx.request.body;
+            const {name, email, password} = ctx.request.body;
             const errors = validator.validate([
-                ["name", name, "required",],
-                ["email", email, "required", "email", ["min", 6,],],
-                ["password", password, "required", ["min", 8,],],
+                ["name", name, "required"],
+                ["email", email, "required", "email", ["min", 6]],
+                ["password", password, "required", ["min", 8]],
             ]);
 
             // Now check for duplicate emails too
@@ -58,15 +58,15 @@ class AuthController {
             }
 
             if (errors.length > 0) {
-                data = {name, email, errors,};
+                data = {name, email, errors};
             } else {
-                let user = new User({name, email, password,});
+                let user = new User({name, email, password});
                 // Hash password
                 user.password = await this.authService.hashPassword(user.password);
                 // Create user
                 user = await this.userService.create(user);
                 // Set session token
-                ctx.cookies.set("session_user_id", user.id, {signed: true, maxAge,});
+                ctx.cookies.set("session_user_id", user.id, {signed: true, maxAge});
                 // Redirect
                 ctx.redirect("/forms/create");
             }
@@ -81,11 +81,11 @@ class AuthController {
 
     async signout(ctx) {
         // Delete auth token
-        ctx.cookies.set("session_user_id", null, {overwrite: true,});
+        ctx.cookies.set("session_user_id", null, {overwrite: true});
         ctx.redirect("/");
     }
 }
 
-AuthController.dependencies = ["services:auth", "services:user",];
+AuthController.dependencies = ["services:auth", "services:user"];
 
 module.exports = AuthController;
