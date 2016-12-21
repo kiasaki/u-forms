@@ -1,6 +1,13 @@
 /*
  * uForms styles
  *
+ * French Violet: #850AE7
+ * French Violet Pale: #E8D2FA
+ * Han Blue: #4A70D9
+ * Han Blue Pale: #DEE5F8
+ * Soap: #D8D8E8
+ * Black: #222
+ * White: #fff
  */
 html, body {
   font-size: 10px;
@@ -23,19 +30,11 @@ body {
 }
 
 a {
-  color: #4cc4ec;
+  color: #4A70D9;
 }
 
 img {
   max-width: 100%;
-}
-
-input[type="text"] {
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #aaa;
-  border-radius: 0.2rem;
-  font-size: 1.6rem;
-  outline: none;
 }
 
 .clearfix:after {
@@ -49,18 +48,61 @@ input[type="text"] {
   font-size: 3.2rem;
   width: 6rem;
   border-bottom: 4px solid #222;
+  white-space: nowrap;
+  margin-top: 0;
 }
 
 .btn {
-  padding: 0.6rem 1.2rem;
-  border: 1px solid #f9b575;
-  border-radius: 0.2rem;
-  background: #f9b575;
+  padding: 1rem;
   font-size: 1.6rem;
-  color: #fff;
+  border-radius: 0.4rem;
+  color: #222;
+  background: #D8D8E8;
+  border: 2px solid #D8D8E8;
   text-align: center;
   display: inline-block;
   text-decoration: none;
+}
+.btn--full-width {
+  width: 100%;
+}
+.btn--primary {
+  color: #FFFFFF;
+  background: #4A70D9;
+  border: 2px solid #4A70D9;
+}
+
+.form-input {
+  margin-bottom: 1.5rem;
+}
+.form-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.form-input textarea,
+.form-input input[type="text"],
+.form-input input[type="password"] {
+  background: #F5F6FC;
+  border: 2px solid #D8D8E8;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  outline: 0;
+  width: 100%;
+}
+.form-input p {
+  margin: 0.5rem 0 0;
+  font-size: 1.3rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 0.4rem;
+  background: #F5F6FC;
+}
+.alert--error {
+  color: #a94442;
+  background: #F2DEDE;
 }
 
 /*
@@ -82,17 +124,44 @@ input[type="text"] {
   margin: 0 auto;
 }
 
+.page-header {
+  border-bottom: 1px solid #e2e2ea;
+}
 .page-header h1 {
   font-weight: 300;
-  font-size: 4rem;
+  font-size: 3.8rem;
   margin: 0;
   line-height: 7rem;
+
+  float: left;
+}
+.page-header h1 a {
+  color: #222;
+  text-decoration: none;
+}
+.page-header .page-header-navigation {
+  float: right;
+}
+.page-header .page-header-navigation a {
+  line-height: 7rem;
+  margin-left: 1.2rem;
 }
 
 .page-content {
-  padding: 0.1rem 0;
+  padding: 2.4rem 0;
 }
 
+.page-footer {
+  border-top: 1px solid #e2e2ea;
+}
 .page-footer .container {
   padding: 2.4rem 0;
+}
+
+/*
+ * login-page
+ */
+.login-page .container {
+  max-width: 40rem;
+  padding: 9.6rem 0;
 }

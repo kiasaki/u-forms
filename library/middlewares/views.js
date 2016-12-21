@@ -9,8 +9,8 @@ function views({
     options = {},
 }) {
     return async function(ctx, next) {
-        ctx.state = {};
-        ctx.render = async function(view, extraState) {
+        ctx.state = ctx.state || {};
+        ctx.render = async function(view, extraState = {}) {
             const state = merge(clone(options), merge(ctx.state, extraState));
             ctx.type = "text/html";
 

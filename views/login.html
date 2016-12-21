@@ -1,0 +1,36 @@
+{{> header}}
+
+<section class="page-content login-page">
+    <div class="container">
+        <form class="form" method="post" action="/login">
+            <h1 class="title">Log in to {{app_name}}</h1>
+
+            {{#error}}
+                <div class="form-input">
+                    <div class="alert alert--error">
+                        {{error}}
+                    </div>
+                </div>
+            {{/error}}
+
+            <div class="form-input">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="e.g., dan.ward@e.corp" value="{{email}}" />
+            </div>
+
+            <div class="form-input">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="e.g., ••••••••••••" />
+                <p>Forgot your password? <a href="/reset">Reset it.</a></p>
+            </div>
+
+            <div class="form-input">
+                <button class="btn btn--primary" type="submit">
+                    Log In
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{{> footer}}

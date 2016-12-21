@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error - {{app_name}}</title>
+    <style>
+        html, body {
+            font-size: 20px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.4;
+            margin: 0;
+            height: 100%;
+            color: #222;
+            background: #f2f2fa;
+        }
+        body {
+            text-align: center;
+            padding: 20vh 24px;
+        }
+        a {
+            color: #4A70D9;
+        }
+    </style>
+</head>
+<body>
+    {{app_name}} is experiencing technical difficulties. Sorry about that.
+    <br />
+    We've been notified, so please stay tuned.
+    <br />
+    <br />
+    Seeing this page a lot? Visit <a href="http://tatus.{{app_base_url}}">status.{{app_base_url}}</a> for info.
+</body>
+</html>
