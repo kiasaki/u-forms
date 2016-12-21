@@ -6,8 +6,10 @@
   "author": "Frederic Gingras <frederic@gingras.cc>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^1.0.1",
     "consolidate": "^0.14.5",
     "hogan.js": "^3.0.2",
+    "humps": "^2.0.0",
     "jsonwebtoken": "^7.2.1",
     "knex": "^0.12.6",
     "koa": "2",
@@ -16,7 +18,8 @@
     "koa-send": "^3.2.0",
     "moment": "^2.17.1",
     "pg": "^6.1.2",
-    "ramda": "^0.22.1"
+    "ramda": "^0.22.1",
+    "ulid": "^0.1.0"
   },
   "devDependencies": {
     "eslint": "^3.12.2"

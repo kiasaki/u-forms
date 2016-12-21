@@ -5,13 +5,13 @@
         <form class="form" method="post" action="/login">
             <h1 class="title">Log in to {{app_name}}</h1>
 
-            {{#error}}
+            {{#errors}}
                 <div class="form-input">
                     <div class="alert alert--error">
-                        {{error}}
+                        {{.}}
                     </div>
                 </div>
-            {{/error}}
+            {{/errors}}
 
             <div class="form-input">
                 <label>Email</label>

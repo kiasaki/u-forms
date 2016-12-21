@@ -19,6 +19,18 @@
         a {
             color: #4A70D9;
         }
+        pre {
+            text-align: left;
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 2px;
+            padding: 24px;
+            margin-top: 24px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -28,5 +40,9 @@
     <br />
     <br />
     Seeing this page a lot? Visit <a href="http://tatus.{{app_base_url}}">status.{{app_base_url}}</a> for info.
+
+    {{#stack}}
+        <pre>{{stack}}</pre>
+    {{/stack}}
 </body>
 </html>

@@ -83,7 +83,7 @@ img {
 .form-input input[type="text"],
 .form-input input[type="password"] {
   background: #F5F6FC;
-  border: 2px solid #D8D8E8;
+  border: 1px solid #D8D8E8;
   border-radius: 0.4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -152,7 +152,7 @@ img {
 }
 
 .page-footer {
-  border-top: 1px solid #e2e2ea;
+  border: 1px solid #e2e2ea;
 }
 .page-footer .container {
   padding: 2.4rem 0;
