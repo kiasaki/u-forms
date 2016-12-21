@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
-const promisify = require("../library/promisify");
+
+const bcryptSaltRounds = 13;
 
 class AuthService {
     constructor(config) {
@@ -7,12 +8,11 @@ class AuthService {
     }
 
     async hashPassword(password) {
-        const passwordSecret = this.config.get("password_secret");
-        return await promisify(bcrypt.hash)(password, passwordSecret);
+        return await bcrypt.hash(password, bcryptSaltRounds);
     }
 
     async verifyPassword(password, passwordHash) {
-        return await promisify(bcrypt.compare)(password, passwordHash);
+        return await bcrypt.compare(password, passwordHash);
     }
 }
 

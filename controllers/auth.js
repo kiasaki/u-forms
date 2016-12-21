@@ -1,6 +1,8 @@
 const validator = require("../library/validator");
 const User = require("../entities/user");
 
+const maxAge = 1000 * 60 * 60 * 24 * 7; // 1 week (in miliseconds)
+
 class AuthController {
     constructor(authService, userService) {
         this.authService = authService;
@@ -29,7 +31,6 @@ class AuthController {
                 data.errors = ["Incorrect username or password.",];
             } else {
                 // Set session token
-                const maxAge = 1000 * 60 * 60 * 24 * 7; // 1 week (in miliseconds)
                 ctx.cookies.set("session_user_id", user.id, {signed: true, maxAge,});
                 // Redirect
                 ctx.redirect("/");
@@ -40,23 +41,34 @@ class AuthController {
     }
 
     async signup(ctx) {
-        const data = {};
+        let data = {};
 
         if (ctx.method === "POST") {
-            const {email, password,} = ctx.request.body;
+            const {name, email, password,} = ctx.request.body;
             const errors = validator.validate([
+                ["name", name, "required",],
                 ["email", email, "required", "email", ["min", 6,],],
                 ["password", password, "required", ["min", 8,],],
             ]);
 
+            // Now check for duplicate emails too
+            const duplicateUser = await this.userService.findByEmail(email);
+            if (duplicateUser) {
+                errors.push("This email is already in use.");
+            }
+
             if (errors.length > 0) {
-                data.email = email;
-                data.errors = errors;
+                data = {name, email, errors,};
             } else {
+                let user = new User({name, email, password,});
+                // Hash password
+                user.password = await this.authService.hashPassword(user.password);
                 // Create user
-                await this.userService.create(new User({
-                    email, password,
-                }));
+                user = await this.userService.create(user);
+                // Set session token
+                ctx.cookies.set("session_user_id", user.id, {signed: true, maxAge,});
+                // Redirect
+                ctx.redirect("/forms/create");
             }
         }
 
@@ -64,11 +76,12 @@ class AuthController {
     }
 
     async reset(ctx) {
-        await ctx.render("index");
+        await ctx.render("reset");
     }
 
     async signout(ctx) {
         // Delete auth token
+        ctx.cookies.set("session_user_id", null, {overwrite: true,});
         ctx.redirect("/");
     }
 }

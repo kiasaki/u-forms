@@ -63,13 +63,10 @@ app.use(require("./library/middlewares/views")({
     },
 }));
 app.use(require("./library/middlewares/static")("static"));
+app.use(require("./library/middlewares/requestLogger"));
+app.use(require("./library/middlewares/loadUser"));
 
-app.use(async function(ctx, next) {
-    var start = new Date;
-    await next();
-    var ms = new Date - start;
-    log("info", "request", {method: ctx.method, url: ctx.url, ms,});
-});
+const requireUser = require("./library/middlewares/requireUser");
 
 const marketingController = container.create(require("./controllers/marketing"));
 router.get("/", marketingController.index);
@@ -83,6 +80,9 @@ router.post("/signup", koaBody, authController.signup);
 router.get("/reset", authController.reset);
 router.post("/reset", koaBody, authController.reset);
 router.get("/signout", authController.signout);
+
+const formsController = container.create(require("./controllers/forms"));
+router.get("/forms/create", formsController.create);
 
 app.use(router.routes());
 app.use(router.allowedMethods());

@@ -8,7 +8,7 @@ function applyToConstructor(constructor, args) {
     return R.apply(R.construct(constructor), args);
 }
 
-var nextIdCounter = 1;
+let nextIdCounter = 1;
 function nextId() {
     return nextIdCounter++;
 }
