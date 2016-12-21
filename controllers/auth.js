@@ -37,7 +37,7 @@ class AuthController {
             }
         }
 
-        await ctx.render("login", data);
+        await ctx.render("auth/login", data);
     }
 
     async signup(ctx) {
@@ -72,11 +72,11 @@ class AuthController {
             }
         }
 
-        await ctx.render("signup", data);
+        await ctx.render("auth/signup", data);
     }
 
     async reset(ctx) {
-        await ctx.render("reset");
+        await ctx.render("auth/reset");
     }
 
     async signout(ctx) {

@@ -11,54 +11,32 @@ const router = app.context.router = require("koa-router")();
 const config = container.load(require("./library/config"));
 config.load({
     port: 3000,
+    root: __dirname,
     app_name: "μForms",
     app_base_url: "localhost:3000",
     new_secret: "keywordcat",
     old_secret: "keywordcat",
     password_secret: "beeeeeeees",
 });
-config.set("root", __dirname);
 config.loadFromEnv();
 
-// Load helpers and services
+// Load helpers and services in container
 container.load(require("./library/db"));
 container.load(require("./library/jwt"));
 container.load(require("./services/auth"));
 container.load(require("./services/user"));
 
-// Configure application
+// Pre-Request Middlewares
 app.keys = [config.get("new_secret"), config.get("old_secret"),];
-app.use(async function(ctx, next) {
-    ctx.state.app_name = config.get("app_name");
-    ctx.state.app_base_url = config.get("app_base_url");
-    await next();
-});
-app.use(async function(ctx, next) {
-    try {
-        await next();
-    } catch (err) {
-        log("error", "server error", {error: err.message, stack: err.stack,});
-
-        // Render custom 500 page
-        if (!err.status || err.status === 500) {
-            ctx.status = 500;
-
-            const data = {};
-            if (config.get("node_env") !== "production") {
-                data.stack = err.stack;
-            }
-
-            await ctx.render("500", data);
-        }
-    }
-});
+app.use(require("./library/middlewares/globalTemplateState"));
+app.use(require("./library/middlewares/errorHandler"));
 app.use(require("./library/middlewares/views")({
     root: path.join(__dirname, "views"),
     engineName: "hogan",
     options: {
         partials: {
-            header: "includes/header",
-            footer: "includes/footer",
+            header: path.join("../includes", "header"),
+            footer: path.join("../includes", "footer"),
         },
     },
 }));
@@ -68,6 +46,7 @@ app.use(require("./library/middlewares/loadUser"));
 
 const requireUser = require("./library/middlewares/requireUser");
 
+// Routes
 const marketingController = container.create(require("./controllers/marketing"));
 router.get("/", marketingController.index);
 router.get("/about", marketingController.about);
@@ -82,8 +61,9 @@ router.post("/reset", koaBody, authController.reset);
 router.get("/signout", authController.signout);
 
 const formsController = container.create(require("./controllers/forms"));
-router.get("/forms/create", formsController.create);
+router.get("/forms/create", koaBody, requireUser, formsController.create);
 
+// Post-Request Middlewares
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(async function(ctx) {await ctx.render("404");});

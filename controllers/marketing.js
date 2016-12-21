@@ -1,10 +1,10 @@
 class MarketingController {
     async index(ctx) {
-        await ctx.render("index");
+        await ctx.render("marketing/index");
     }
 
     async about(ctx) {
-        await ctx.render("about");
+        await ctx.render("marketing/about");
     }
 }
 

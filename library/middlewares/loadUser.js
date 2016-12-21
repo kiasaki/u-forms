@@ -4,6 +4,7 @@ async function loadUserMiddleware(ctx, next) {
 
     if (userId) {
         ctx.currentUser = await userService.findById(userId);
+        ctx.state.currentUser = ctx.currentUser;
     }
 
     await next();
