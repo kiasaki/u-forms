@@ -3,6 +3,41 @@
 <section class="page-content">
     <div class="container">
         <h1 class="title">Create form</h1>
+
+        <form class="form w-75" method="post" action="/forms/create">
+            {{#errors}}
+                <div class="form-input">
+                    <div class="alert alert--error">
+                        {{.}}
+                    </div>
+                </div>
+            {{/errors}}
+
+            <div class="form-input">
+                <label>Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    value="{{name}}"
+                    placeholder="e.g., E.corp Contact Form"
+                    autofocus
+                />
+            </div>
+
+            <div class="form-input">
+                <label>
+                    <input type="checkbox" name="notify" {{#notify}}checked{{/notify}} />
+                    Receive email notifications?
+                </label>
+                <p>If enabled, you will receive an email for each new form submission.</p>
+            </div>
+
+            <div class="form-input">
+                <button class="btn btn--primary" type="submit">
+                    Create
+                </button>
+            </div>
+        </form>
     </div>
 </section>
 

@@ -21,6 +21,7 @@ config.load({
 config.loadFromEnv();
 
 // Load helpers and services in container
+container.set("container", container);
 container.load(require("./library/db"));
 container.load(require("./library/jwt"));
 container.load(require("./services/auth"));

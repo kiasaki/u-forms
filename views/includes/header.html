@@ -8,14 +8,22 @@
     <title>{{app_name}}</title>
 
     <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/utachyons.css">
 </head>
 <body>
     <header class="page-header">
         <div class="container clearfix">
             <h1><a href="/">{{app_name}}</a></h1>
             <div class="page-header-navigation">
-                <a href="/login">Login</a>
-                <a href="/signup">Signup</a>
+                {{#currentUser}}
+                    <span>{{currentUser.name}}</span>
+                    <a href="/">Forms</a>
+                    <a href="/settings">Settings</a>
+                {{/currentUser}}
+                {{^currentUser}}
+                    <a href="/login">Login</a>
+                    <a href="/signup">Signup</a>
+                {{/currentUser}}
             </div>
         </div>
     </header>

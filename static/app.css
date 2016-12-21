@@ -164,9 +164,25 @@ img {
 
 .page-footer {
   border: 1px solid #e2e2ea;
+  font-size: 1.6rem;
 }
 .page-footer .container {
   padding: 2.4rem 0;
+}
+.page-footer .page-footer-copy {
+  float: left;
+}
+.page-footer .page-footer-nav {
+  float: right;
+  text-align: right;
+}
+.page-footer .page-footer-nav a {
+  display: inline-block;
+  margin-left: 1.2rem;
+  text-decoration: none;
+}
+.page-footer .page-footer-nav a:hover {
+  text-decoration: underline;
 }
 
 /*

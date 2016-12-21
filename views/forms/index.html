@@ -1,0 +1,24 @@
+{{> header}}
+
+<section class="page-content">
+    <div class="container">
+        <h1 class="title">Forms</h1>
+
+        <div class="cf">
+            <div class="fl w-75 pr3">
+                {{^forms}}
+                    <div class="br2 pv6 tc bg-near-white">
+                        You have no forms at the moment :'(
+                        <br>
+                        <a href="/forms/create">Create one!</a>
+                    </div>
+                {{/forms}}
+            </div>
+            <div class="fl w-25">
+                <a href="/forms/create" class="btn btn--primary">New form</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{> footer}}

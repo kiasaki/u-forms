@@ -1,6 +1,18 @@
     <footer class="page-footer">
-        <div class="container">
-            {{app_name}}
+        <div class="container clearfix">
+            <div class="page-footer-copy">
+                {{app_name}}
+            </div>
+
+            <div class="page-footer-nav">
+                {{#currentUser}}
+                    <a href="/signout">Sign out</a>
+                {{/currentUser}}
+                {{^currentUser}}
+                    <a href="/login">Login</a>
+                    <a href="/signup">Signup</a>
+                {{/currentUser}}
+            </div>
         </div>
     </footer>
 </body>
