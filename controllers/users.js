@@ -8,6 +8,7 @@ class UsersController {
         this.userService = userService;
 
         this.edit = this.edit.bind(this);
+        this.destroy = this.destroy.bind(this);
     }
 
     async edit(ctx) {
@@ -50,6 +51,13 @@ class UsersController {
     }
 
     async destroy(ctx) {
+        if (ctx.method === "POST") {
+            await this.userService.destroy(ctx.currentUser.id);
+            ctx.cookies.set("session_user_id", null, {overwrite: true});
+            ctx.redirect("/");
+            return;
+        }
+
         await ctx.render("users/destroy");
     }
 }
