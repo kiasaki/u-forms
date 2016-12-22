@@ -10,7 +10,7 @@ class FormService {
         return this.db.findWhere(Form, {id});
     }
 
-    findUserForms(userId) {
+    findForUser(userId) {
         return this.db.findAllWhere(Form, {userId}, {
             orderBy: "-updated",
         });

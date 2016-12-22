@@ -10,6 +10,7 @@ class SubmissionsController {
         this.submissionService = submissionService;
 
         this.create = this.create.bind(this);
+        this.destroy = this.destroy.bind(this);
     }
 
     async create(ctx) {
@@ -68,6 +69,22 @@ class SubmissionsController {
         await ctx.render("submissions/thank-you", {
             referer: ctx.query.referer,
         });
+    }
+
+    async destroy(ctx) {
+        const submission = await this.submissionService.findById(ctx.params.id);
+        ctx.assert(submission, 404);
+
+        // We need to fetch to form associated to the submission
+        // to make sure this user has the rights to delete this submission
+        const form = await this.formService.findById(submission.formId);
+        ctx.assert(form, 404);
+        ctx.assert(form.userId === ctx.currentUser.id, 404);
+
+        // Delete it
+        await this.submissionService.destroy(submission.id);
+
+        ctx.redirect(`/forms/${form.id}#submissions`);
     }
 }
 

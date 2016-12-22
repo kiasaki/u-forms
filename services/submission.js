@@ -9,6 +9,12 @@ class SubmissionService {
         return this.db.findWhere(Submission, {id});
     }
 
+    findForForm(formId) {
+        return this.db.findAllWhere(Submission, {formId}, {
+            orderBy: "-created",
+        });
+    }
+
     create(entity) {
         return this.db.create(Submission, entity);
     }

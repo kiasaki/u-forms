@@ -1,3 +1,5 @@
+const {toPairs} = require("ramda");
+const moment = require("moment");
 const validator = require("../library/validator");
 const Form = require("../entities/form");
 
@@ -13,7 +15,7 @@ class FormsController {
     }
 
     async index(ctx) {
-        const forms = await this.formService.findUserForms(ctx.currentUser.id);
+        const forms = await this.formService.findForUser(ctx.currentUser.id);
         await ctx.render("forms/index", {forms});
     }
 
@@ -52,7 +54,15 @@ class FormsController {
         ctx.assert(form, 404);
         ctx.assert(form.userId === ctx.currentUser.id, 404);
 
-        await ctx.render("forms/show", {form});
+        let submissions = await this.submissionService.findForForm(form.id);
+
+        submissions = submissions.map(s => {
+            s.createdFormatted = moment(s.created).format("YYYY-MM-DD HH:mm");
+            s.dataPairs = toPairs(s.data);
+            return s;
+        });
+
+        await ctx.render("forms/show", {form, submissions});
     }
 
     async edit(ctx) {

@@ -64,8 +64,19 @@
 </pre>
         </div>
 
+        <a name="submissions"></a>
         <h2>Submissions</h2>
 
+        {{#submissions}}
+            <div class="mb3 pa3 bl bw3 br2 b--blue bg-near-white hover-bg-light-gray">
+                <a href="/submissions/{{id}}/destroy" class="fr gray">Delete</a>
+                <i>{{createdFormatted}}</i><br>
+                {{#dataPairs}}
+                    <strong class="db mt2">{{0}}</strong>
+                    <pre class="ma0 pl3">{{1}}</pre>
+                {{/dataPairs}}
+            </div>
+        {{/submissions}}
         {{^submissions}}
             <div class="br2 pv6 tc bg-near-white">
                 There are no submissions for this form yet.

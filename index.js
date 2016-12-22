@@ -80,6 +80,7 @@ router.post("/forms/:id([A-Z0-9]{26})/destroy", koaBody, requireUser, formsContr
 const submissionsController = container.create(require("./controllers/submissions"));
 router.post("/f/:id([A-Z0-9]{26})", koaBody, submissionsController.create);
 router.get("/thank-you", submissionsController.thankYou);
+router.get("/submissions/:id([A-Z0-9]{26})/destroy", koaBody, requireUser, submissionsController.destroy);
 
 // Post-Request Middlewares
 app.use(router.routes());

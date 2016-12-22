@@ -1,6 +1,7 @@
 const {
     mapObjIndexed, merge, compose, not, contains, filter, curryN, __, pickAll,
 } = require("ramda");
+const moment = require("moment");
 
 class Entity {
     constructor(params, skipDefaults) {
@@ -23,7 +24,7 @@ class Entity {
 }
 
 Entity.newDate = function () {
-    return new Date();
+    return moment().utc().toDate();
 };
 
 module.exports = Entity;
