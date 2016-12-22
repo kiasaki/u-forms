@@ -1,7 +1,9 @@
 const Submission = require("../entities/submission");
 
 class SubmissionsController {
-    constructor(submissionService) {
+    constructor(mailerService, formService, submissionService) {
+        this.mailerService = mailerService;
+        this.formService = formService;
         this.submissionService = submissionService;
 
         this.create = this.create.bind(this);
@@ -10,6 +12,8 @@ class SubmissionsController {
     async create(ctx) {
         const data = ctx.request.body;
         const email = data.email || data._email || this.config.get("app_email");
+
+        console.log();
 
         // Spam check/filtering missing?
         if (data._bot && data._bot.length > 0) {
@@ -35,7 +39,7 @@ class SubmissionsController {
         }));
 
         // Email notification (if enabled)
-        if (form.notify) {
+        if (false && form.notify) {
             await this.mailerService.send({
                 to: form.email,
                 from: email,
@@ -51,10 +55,16 @@ class SubmissionsController {
             return;
         }
 
-        await ctx.render("submissions/thank-you");
+        ctx.redirect(`/thank-you?referer=${ctx.get("referer")}`);
+    }
+
+    async thankYou(ctx) {
+        await ctx.render("submissions/thank-you", {
+            referer: ctx.query.referer,
+        });
     }
 }
 
-SubmissionsController.dependencies = ["services:form", "services:submission"];
+SubmissionsController.dependencies = ["services:mailer", "services:form", "services:submission"];
 
 module.exports = SubmissionsController;

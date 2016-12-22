@@ -18,6 +18,11 @@ config.load({
     new_secret: "keyboardcat",
     old_secret: "keyboardcat",
     password_secret: "beeeeeeees",
+    mailer_implementation: "console",
+    mailer_smtp_host: "",
+    mailer_smtp_port: 25,
+    mailer_smtp_user: "",
+    mailer_smtp_pass: "",
 });
 config.loadFromEnv();
 
@@ -25,6 +30,7 @@ config.loadFromEnv();
 container.set("container", container);
 container.load(require("./library/db"));
 container.load(require("./library/jwt"));
+container.load(require("./services/mailer"));
 container.load(require("./services/auth"));
 container.load(require("./services/user"));
 container.load(require("./services/form"));
@@ -54,6 +60,7 @@ const requireUser = require("./library/middlewares/requireUser");
 const marketingController = container.create(require("./controllers/marketing"));
 router.get("/", marketingController.index);
 router.get("/about", marketingController.about);
+router.get("/test", marketingController.test);
 
 const authController = container.create(require("./controllers/auth"));
 router.get("/login", authController.login);
@@ -75,6 +82,7 @@ router.post("/forms/:id([A-Z0-9]{26})/destroy", koaBody, requireUser, formsContr
 
 const submissionsController = container.create(require("./controllers/submissions"));
 router.post("/f/:id([A-Z0-9]{26})", koaBody, submissionsController.create);
+router.get("/thank-you", submissionsController.thankYou);
 
 // Post-Request Middlewares
 app.use(router.routes());

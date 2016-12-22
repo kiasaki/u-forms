@@ -9,6 +9,14 @@ class SubmissionService {
         return this.db.findWhere(Submission, {id});
     }
 
+    create(entity) {
+        return this.db.create(Submission, entity);
+    }
+
+    destroy(entityId) {
+        return this.db.destroy(Submission, entityId);
+    }
+
     destroyFormSubmissions(formId) {
         return this.db.knex(Submission.table)
             .where({form_id: formId})

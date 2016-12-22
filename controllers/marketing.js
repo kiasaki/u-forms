@@ -18,6 +18,10 @@ class MarketingController {
     async about(ctx) {
         await ctx.render("marketing/about");
     }
+
+    async test(ctx) {
+        await ctx.render("marketing/test");
+    }
 }
 
 MarketingController.dependencies = ["container"];

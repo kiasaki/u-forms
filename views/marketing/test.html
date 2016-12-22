@@ -1,0 +1,24 @@
+{{> header}}
+
+<section class="page-content">
+    <div class="container">
+        <h1 class="title">Test form</h1>
+
+        <form method="post" action="/f/01B4KZHZMHSS6B73D34Q4W37V3">
+            <div class="form-input">
+                <input type="text" name="email" placeholder="Your email">
+            </div>
+            <div class="form-input">
+                <textarea name="message" placeholder="Your message"></textarea>
+            </div>
+            <div class="form-input">
+                <button class="btn btn--primary" type="submit">Send</button>
+            </div>
+            <!--<input type="hidden" name="_next" value="/about">-->
+            <input type="text" name="_bot" style="display:none">
+        </form>
+
+    </div>
+</section>
+
+{{> footer}}
