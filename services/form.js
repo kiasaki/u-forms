@@ -5,12 +5,18 @@ class FormService {
         this.db = db;
     }
 
-    async findById(id) {
-        return await this.db.findWhere(Form, {id});
+    findById(id) {
+        return this.db.findWhere(Form, {id});
     }
 
-    async create(entity) {
-        return await this.db.create(Form, entity);
+    findUserForms(userId) {
+        return this.db.findAllWhere(Form, {userId}, {
+            orderBy: "-updated",
+        });
+    }
+
+    create(entity) {
+        return this.db.create(Form, entity);
     }
 }
 

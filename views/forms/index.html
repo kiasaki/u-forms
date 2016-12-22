@@ -6,6 +6,11 @@
 
         <div class="cf">
             <div class="fl w-75 pr3">
+                {{#forms}}
+                    <a class="db mb3 pa3 bl bw3 b--blue bg-near-white black no-underline hover-bg-light-gray" href="/forms/{{id}}">
+                        {{name}}
+                    </a>
+                {{/forms}}
                 {{^forms}}
                     <div class="br2 pv6 tc bg-near-white">
                         You have no forms at the moment :'(

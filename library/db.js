@@ -34,6 +34,33 @@ class DB {
         return new Entity(humps.camelizeKeys(data[0]));
     }
 
+    async findAllWhere(Entity, where, options = {}) {
+        let query = this.knex
+            .select()
+            .from(Entity.table)
+            .where(humps.decamelizeKeys(where));
+
+        if ("offset" in options) {
+            query = query.offset(options.offset);
+        }
+        if ("limit" in options) {
+            query = query.limit(options.limit);
+        }
+        if ("orderBy" in options) {
+            let orderByName = options.orderBy;
+            let orderByDirection = "asc";
+            if (orderByName[0] === "-") {
+                orderByName = orderByName.slice(1);
+                orderByDirection = "desc";
+            }
+
+            query = query.orderBy(orderByName, orderByDirection);
+        }
+
+        const data = await query;
+        return data.map(row => new Entity(humps.camelizeKeys(row)));
+    }
+
     async create(Entity, entity) {
         // Assign a new id
         entity.id = ulid();

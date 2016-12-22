@@ -9,7 +9,8 @@ class FormsController {
     }
 
     async index(ctx) {
-        await ctx.render("forms/index");
+        const forms = await this.formService.findUserForms(ctx.currentUser.id);
+        await ctx.render("forms/index", {forms});
     }
 
     async create(ctx) {

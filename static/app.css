@@ -3,14 +3,14 @@
  *
  * French Violet: #850AE7
  * French Violet Pale: #E8D2FA
- * Han Blue: #4A70D9
+ * Han Blue: #357EDD
  * Han Blue Pale: #DEE5F8
  * Soap: #D8D8E8
  * Black: #222
  * White: #fff
  */
 html, body {
-  font-size: 10px;
+  font-size: 16px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4;
   margin: 0;
@@ -22,7 +22,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 body {
-  font-size: 1.8rem;
+  font-size: 18px;
 }
 
 * {
@@ -31,7 +31,7 @@ body {
 
 a {
   cursor: pointer;
-  color: #4A70D9;
+  color: #357EDD;
 }
 
 img {
@@ -46,17 +46,17 @@ img {
 
 .title {
   font-weight: 300;
-  font-size: 3.2rem;
-  width: 6rem;
+  font-size: 32px;
+  width: 60px;
   border-bottom: 4px solid #222;
   white-space: nowrap;
   margin-top: 0;
 }
 
 .btn {
-  padding: 1rem;
-  font-size: 1.6rem;
-  border-radius: 0.4rem;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
   color: #222;
   background: #D8D8E8;
   border: 2px solid #D8D8E8;
@@ -73,36 +73,36 @@ img {
 }
 .btn--primary {
   color: #FFFFFF;
-  background: #4A70D9;
-  border: 2px solid #4A70D9;
+  background: #357EDD;
+  border: 2px solid #357EDD;
 }
 
 .form-input {
-  margin-bottom: 1.5rem;
+  margin-bottom: 15px;
 }
 .form-input label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
 }
 .form-input textarea,
 .form-input input[type="text"],
 .form-input input[type="password"] {
   background: #F5F6FC;
   border: 1px solid #D8D8E8;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  font-size: 1.6rem;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
   outline: 0;
   width: 100%;
 }
 .form-input p {
-  margin: 0.5rem 0 0;
-  font-size: 1.3rem;
+  margin: 5px 0 0;
+  font-size: 13px;
 }
 
 .alert {
-  padding: 1rem;
-  border-radius: 0.4rem;
+  padding: 10px;
+  border-radius: 4px;
   background: #F5F6FC;
 }
 .alert--error {
@@ -116,7 +116,7 @@ img {
 .page-header,
 .page-content,
 .page-footer {
-  max-width: 110rem;
+  max-width: 1100px;
   margin: 0 auto;
 
   background: #fff;
@@ -125,7 +125,7 @@ img {
 }
 .container {
   width: 90%;
-  max-width: 90rem;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -134,9 +134,9 @@ img {
 }
 .page-header h1 {
   font-weight: 300;
-  font-size: 3.8rem;
+  font-size: 38px;
   margin: 0;
-  line-height: 7rem;
+  line-height: 70px;
 
   float: left;
 }
@@ -149,25 +149,25 @@ img {
 }
 .page-header .page-header-navigation a {
   display: inline-block;
-  line-height: 6.8rem;
-  margin-left: 1.2rem;
+  line-height: 68px;
+  margin-left: 12px;
   text-decoration: none;
   border-bottom: 2px solid transparent;
 }
 .page-header .page-header-navigation a:hover {
-  border-bottom: 2px solid #4A70D9;
+  border-bottom: 2px solid #357EDD;
 }
 
 .page-content {
-  padding: 2.4rem 0;
+  padding: 24px 0;
 }
 
 .page-footer {
   border: 1px solid #e2e2ea;
-  font-size: 1.6rem;
+  font-size: 16px;
 }
 .page-footer .container {
-  padding: 2.4rem 0;
+  padding: 24px 0;
 }
 .page-footer .page-footer-copy {
   float: left;
@@ -178,7 +178,7 @@ img {
 }
 .page-footer .page-footer-nav a {
   display: inline-block;
-  margin-left: 1.2rem;
+  margin-left: 12px;
   text-decoration: none;
 }
 .page-footer .page-footer-nav a:hover {
@@ -189,6 +189,6 @@ img {
  * auth-page
  */
 .auth-page .container {
-  max-width: 40rem;
-  padding: 9.6rem 0;
+  max-width: 400px;
+  padding: 96px 0;
 }
