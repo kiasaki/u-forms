@@ -35,17 +35,32 @@
   &lt;input type=&quot;email&quot; name=&quot;<b>email</b>&quot; placeholder=&quot;Your email&quot;&gt;
   &lt;textarea name=&quot;<b>message</b>&quot; placeholder=&quot;Your message&quot;&gt;&lt;/textarea&gt;
   &lt;button type=&quot;submit&quot;&gt;Send&lt;/button&gt;
+  &lt;input type=&quot;text&quot; name=&quot;_bot&quot; style=&quot;display:none&quot;&gt;
 &lt;/form&gt;
 </pre>
 
+            <strong>Advanced features</strong>
+
             <p>
-                By default, a "thank you" page is shown to the user after his form is submitted, in
-                the event you want to user to go back to a specific page on your website, simply
-                add a "hidden" input named "uforms_return_url" like below:
+                By having an input with a "name" attribute set to <code class="code">_next</code>
+                you can provide an URL to redirect the user to after the form is submitted. By
+                default μForms shows a "Thank You" page.
             </p>
 
 <pre class="pa3 bg-white br2 f5">
-&lt;input type=&quot;hidden&quot; name=&quot;<b>uforms_return_url</b>&quot; value=&quot;<i>https://mysite.com/thank-you</i>&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;<b>_next</b>&quot; value=&quot;<i>https://mysite.com/thank-you</i>&quot;&gt;
+</pre>
+
+            <p>
+                By having an input with a "name" attribute set to <code class="code">_email</code>
+                (or <code class="code">email</code>) you can provide an email address to use as
+                "Reply-To" value in the notification email sent to you.
+            </p>
+
+<pre class="pa3 bg-white br2 f5">
+&lt;input type=&quot;hidden&quot; name=&quot;<b>_email</b>&quot; value=&quot;some dynamic value&quot;&gt;
+- or -
+&lt;input type=&quot;email&quot; name=&quot;<b>email</b>&quot;&gt;
 </pre>
         </div>
 

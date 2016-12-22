@@ -24,6 +24,10 @@ class FormService {
         entity.updated = moment().utc().toDate();
         return this.db.update(Form, entity);
     }
+
+    destroy(formId) {
+        return this.db.destroy(Form, formId);
+    }
 }
 
 FormService.dependencyName = "services:form";

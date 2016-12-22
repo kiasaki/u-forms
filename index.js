@@ -14,8 +14,9 @@ config.load({
     root: __dirname,
     app_name: "μForms",
     app_base_url: "localhost:3000",
-    new_secret: "keywordcat",
-    old_secret: "keywordcat",
+    app_email: "hi@uforms.kiasaki.com",
+    new_secret: "keyboardcat",
+    old_secret: "keyboardcat",
     password_secret: "beeeeeeees",
 });
 config.loadFromEnv();
@@ -27,6 +28,7 @@ container.load(require("./library/jwt"));
 container.load(require("./services/auth"));
 container.load(require("./services/user"));
 container.load(require("./services/form"));
+container.load(require("./services/submission"));
 
 // Pre-Request Middlewares
 app.keys = [config.get("new_secret"), config.get("old_secret")];
@@ -68,6 +70,11 @@ router.post("/forms/create", koaBody, requireUser, formsController.create);
 router.get("/forms/:id([A-Z0-9]{26})", requireUser, formsController.show);
 router.get("/forms/:id([A-Z0-9]{26})/edit", requireUser, formsController.edit);
 router.post("/forms/:id([A-Z0-9]{26})/edit", koaBody, requireUser, formsController.edit);
+router.get("/forms/:id([A-Z0-9]{26})/destroy", requireUser, formsController.destroy);
+router.post("/forms/:id([A-Z0-9]{26})/destroy", koaBody, requireUser, formsController.destroy);
+
+const submissionsController = container.create(require("./controllers/submissions"));
+router.post("/f/:id([A-Z0-9]{26})", koaBody, submissionsController.create);
 
 // Post-Request Middlewares
 app.use(router.routes());

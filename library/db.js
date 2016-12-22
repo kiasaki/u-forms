@@ -78,6 +78,12 @@ class DB {
             .where("id", entity.id)
             .update(humps.decamelizeKeys(entity.toObject()));
     }
+
+    async destroy(Entity, entityId) {
+        await this.knex(Entity.table)
+            .where("id", entityId)
+            .del();
+    }
 }
 
 DB.dependencyName = "db";

@@ -2,12 +2,14 @@ const validator = require("../library/validator");
 const Form = require("../entities/form");
 
 class FormsController {
-    constructor(formService) {
+    constructor(formService, submissionService) {
         this.formService = formService;
+        this.submissionService = submissionService;
 
         this.create = this.create.bind(this);
         this.show = this.show.bind(this);
         this.edit = this.edit.bind(this);
+        this.destroy = this.destroy.bind(this);
     }
 
     async index(ctx) {
@@ -35,7 +37,7 @@ class FormsController {
                     userId: ctx.currentUser.id,
                     name: data.name,
                     notify: data.notify,
-                    email: null,
+                    email: ctx.currentUser.email,
                 }));
                 ctx.redirect(`/forms/${form.id}`);
                 return;
@@ -77,8 +79,23 @@ class FormsController {
 
         await ctx.render("forms/edit", {form, errors});
     }
+
+    async destroy(ctx) {
+        const form = await this.formService.findById(ctx.params.id);
+        ctx.assert(form, 404);
+        ctx.assert(form.userId === ctx.currentUser.id, 404);
+
+        if (ctx.method === "POST") {
+            await this.submissionService.destroyFormSubmissions(form.id);
+            await this.formService.destroy(form.id);
+            ctx.redirect("/");
+            return;
+        }
+
+        await ctx.render("forms/destroy", {form});
+    }
 }
 
-FormsController.dependencies = ["services:form"];
+FormsController.dependencies = ["services:form", "services:submission"];
 
 module.exports = FormsController;

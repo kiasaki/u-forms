@@ -1,0 +1,19 @@
+{{> header}}
+
+<section class="page-content">
+    <div class="container">
+        <h1 class="title">Delete "{{form.name}}"</h1>
+
+        <form method="post" action="/forms/{{form.id}}/destroy" class="tc pv6">
+            <p>Are you sure you want to delete the form "{{form.name}}" and all it's submissions?</p>
+            <button class="btn white bg-dark-red b--dark-red" type="submit">
+                Delete
+            </button>
+            <a class="btn" href="/forms/{{form.id}}">
+                Cancel
+            </a>
+        </form>
+    </div>
+</section>
+
+{{> footer}}
