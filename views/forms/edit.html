@@ -1,0 +1,47 @@
+{{> header}}
+
+<section class="page-content">
+    <div class="container">
+        <h1 class="title">{{form.name}} Settings</h1>
+
+        <form class="form w-75" method="post" action="/forms/{{form.id}}/edit">
+            {{#errors}}
+                <div class="form-input">
+                    <div class="alert alert--error">
+                        {{.}}
+                    </div>
+                </div>
+            {{/errors}}
+
+            <div class="form-input">
+                <label>Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    value="{{form.name}}"
+                    placeholder="e.g., E.corp Contact Form"
+                />
+            </div>
+
+            <div class="form-input">
+                <label>
+                    <input type="checkbox" name="notify" {{#form.notify}}checked{{/form.notify}} />
+                    Receive email notifications?
+                </label>
+                <p>If enabled, you will receive an email for each new form submission.</p>
+            </div>
+
+            <div class="form-input">
+                <a href="/forms/{{form.id}}/destroy" class="fr f6 mt2 dark-red">Delete form & all submissions</a>
+                <button class="btn btn--primary" type="submit">
+                    Save
+                </button>
+                <a class="btn" href="/forms/{{form.id}}">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+
+{{> footer}}

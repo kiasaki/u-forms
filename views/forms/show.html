@@ -1,0 +1,64 @@
+{{> header}}
+
+<section class="page-content">
+    <div class="container">
+        <a href="/forms/{{form.id}}/edit" class="btn btn--primary fr ml2">Settings</a>
+        <a href="/" class="btn fr">&larr; Back</a>
+        <h1 class="title">
+            {{form.name}}
+        </h1>
+
+        <h2>Form URL</h2>
+
+        <div class="form-input">
+            <input
+                type="text"
+                value="https://{{app_base_url}}/f/{{form.id}}"
+                readonly
+                class="code"
+                onclick="this.select()"
+            >
+        </div>
+
+        <h2>Usage</h2>
+
+        <div class="pa3 bg-near-white br2">
+            <strong>HTML Form Example</strong>
+
+            <p>
+                Sending data to μForms consists in creating an HTML form with the "action"
+                attribute set to this form's unique URL. For example:
+            </p>
+
+<pre class="pa3 bg-white br2 f5">
+&lt;form method=&quot;post&quot; action=&quot;<b>https://{{app_base_url}}/f/{{form.id}}</b>&quot;&gt;
+  &lt;input type=&quot;email&quot; name=&quot;<b>email</b>&quot; placeholder=&quot;Your email&quot;&gt;
+  &lt;textarea name=&quot;<b>message</b>&quot; placeholder=&quot;Your message&quot;&gt;&lt;/textarea&gt;
+  &lt;button type=&quot;submit&quot;&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+            <p>
+                By default, a "thank you" page is shown to the user after his form is submitted, in
+                the event you want to user to go back to a specific page on your website, simply
+                add a "hidden" input named "uforms_return_url" like below:
+            </p>
+
+<pre class="pa3 bg-white br2 f5">
+&lt;input type=&quot;hidden&quot; name=&quot;<b>uforms_return_url</b>&quot; value=&quot;<i>https://mysite.com/thank-you</i>&quot;&gt;
+</pre>
+        </div>
+
+        <h2>Submissions</h2>
+
+        {{^submissions}}
+            <div class="br2 pv6 tc bg-near-white">
+                There are no submissions for this form yet.
+                <br>
+                <i class="f6">Make sure you installed the form correctly and used the right URL.</i>
+            </div>
+        {{/submissions}}
+    </div>
+</section>
+
+{{> footer}}

@@ -58,9 +58,10 @@ img {
   font-size: 16px;
   border-radius: 4px;
   color: #222;
-  background: #D8D8E8;
-  border: 2px solid #D8D8E8;
+  background: #f4f4f4;
+  border: 2px solid #f4f4f4;
   text-align: center;
+  line-height: 1.4;
   display: inline-block;
   text-decoration: none;
 }
@@ -87,8 +88,8 @@ img {
 .form-input textarea,
 .form-input input[type="text"],
 .form-input input[type="password"] {
-  background: #F5F6FC;
-  border: 1px solid #D8D8E8;
+  background: #f4f4f4;
+  border: 1px solid #CCCCCC;
   border-radius: 4px;
   padding: 10px;
   font-size: 16px;

@@ -6,17 +6,18 @@ async function errorHandlerMiddleware(ctx, next) {
     try {
         await next();
     } catch (err) {
-        log("error", "server error", {error: err.message, stack: err.stack});
+        const data = {};
+        if (config.get("node_env") !== "production") {
+            data.stack = err.stack;
+        }
 
-        // Render custom 500 page
-        if (!err.status || err.status === 500) {
-            ctx.status = 500;
+        if (err.status === 404) {
+            ctx.status = 404;
+            await ctx.render("error/404", data);
+        } else {
+            log("error", "server error", {error: err.message, stack: err.stack});
 
-            const data = {};
-            if (config.get("node_env") !== "production") {
-                data.stack = err.stack;
-            }
-
+            ctx.status = err.status || 500;
             await ctx.render("error/500", data);
         }
     }

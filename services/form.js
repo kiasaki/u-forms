@@ -1,3 +1,4 @@
+const moment = require("moment");
 const Form = require("../entities/form");
 
 class FormService {
@@ -17,6 +18,11 @@ class FormService {
 
     create(entity) {
         return this.db.create(Form, entity);
+    }
+
+    update(entity) {
+        entity.updated = moment().utc().toDate();
+        return this.db.update(Form, entity);
     }
 }
 

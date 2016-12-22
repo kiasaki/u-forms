@@ -72,6 +72,12 @@ class DB {
 
         return new Entity(humps.camelizeKeys(data[0]));
     }
+
+    async update(Entity, entity) {
+        await this.knex(Entity.table)
+            .where("id", entity.id)
+            .update(humps.decamelizeKeys(entity.toObject()));
+    }
 }
 
 DB.dependencyName = "db";

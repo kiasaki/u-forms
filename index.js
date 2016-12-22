@@ -65,6 +65,9 @@ router.get("/signout", authController.signout);
 const formsController = container.create(require("./controllers/forms"));
 router.get("/forms/create", requireUser, formsController.create);
 router.post("/forms/create", koaBody, requireUser, formsController.create);
+router.get("/forms/:id([A-Z0-9]{26})", requireUser, formsController.show);
+router.get("/forms/:id([A-Z0-9]{26})/edit", requireUser, formsController.edit);
+router.post("/forms/:id([A-Z0-9]{26})/edit", koaBody, requireUser, formsController.edit);
 
 // Post-Request Middlewares
 app.use(router.routes());

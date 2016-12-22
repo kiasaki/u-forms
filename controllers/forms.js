@@ -6,6 +6,8 @@ class FormsController {
         this.formService = formService;
 
         this.create = this.create.bind(this);
+        this.show = this.show.bind(this);
+        this.edit = this.edit.bind(this);
     }
 
     async index(ctx) {
@@ -41,6 +43,39 @@ class FormsController {
         }
 
         await ctx.render("forms/create", data);
+    }
+
+    async show(ctx) {
+        const form = await this.formService.findById(ctx.params.id);
+        ctx.assert(form, 404);
+        ctx.assert(form.userId === ctx.currentUser.id, 404);
+
+        await ctx.render("forms/show", {form});
+    }
+
+    async edit(ctx) {
+        let errors = [];
+        const form = await this.formService.findById(ctx.params.id);
+        ctx.assert(form, 404);
+        ctx.assert(form.userId === ctx.currentUser.id, 404);
+
+        if (ctx.method === "POST") {
+            form.notify = "notify" in ctx.request.body;
+            form.name = ctx.request.body.name;
+
+            errors = validator.validate([
+                ["name", form.name, "required"],
+            ]);
+
+            if (errors.length === 0) {
+                // Save form and redirect to it's "show" page
+                await this.formService.update(form);
+                ctx.redirect(`/forms/${form.id}`);
+                return;
+            }
+        }
+
+        await ctx.render("forms/edit", {form, errors});
     }
 }
 
