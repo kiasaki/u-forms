@@ -1,0 +1,9 @@
+New submission for form "{{form.name}}":
+
+{{#dataPairs}}
+---
+{{0}}: {{1}}
+{{/dataPairs}}
+
+(See all sumissions for this form here: https://{{app_base_url}}/forms/{{form.id}})
+

@@ -1,0 +1,19 @@
+<h4>
+New submission for form "{{form.name}}":
+</h4>
+
+<p>
+    {{#dataPairs}}
+    <hr />
+    <string>{{0}}</strong>: {{1}}
+    {{/dataPairs}}
+</p>
+
+<p>
+    (
+    See all sumissions for this form here:
+    <a href="https://{{app_base_url}}/forms/{{form.id}}">
+        https://{{app_base_url}}/forms/{{form.id}}
+    </a>
+    )
+</p>

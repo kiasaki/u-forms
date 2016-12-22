@@ -1,4 +1,7 @@
+const {fromPairs, toPairs, filter} = require("ramda");
 const Submission = require("../entities/submission");
+
+const keyDoesntStartWithUnderscore = ([k]) => k[0] !== "_";
 
 class SubmissionsController {
     constructor(mailerService, formService, submissionService) {
@@ -12,8 +15,6 @@ class SubmissionsController {
     async create(ctx) {
         const data = ctx.request.body;
         const email = data.email || data._email || this.config.get("app_email");
-
-        console.log();
 
         // Spam check/filtering missing?
         if (data._bot && data._bot.length > 0) {
@@ -34,18 +35,23 @@ class SubmissionsController {
         // Save the submission
         const submission = await this.submissionService.create(new Submission({
             formId: form.id,
-            email,
-            data,
+            email: email,
+            data: fromPairs(filter(keyDoesntStartWithUnderscore, toPairs(data))),
         }));
 
         // Email notification (if enabled)
-        if (false && form.notify) {
+        if (form.notify) {
             await this.mailerService.send({
                 to: form.email,
                 from: email,
                 subject: `[uForms] ${form.name}`,
-                templateName: "mails/new-submission",
-                templateData: {form, submission},
+                templateName: "new-submission",
+                templateData: {
+                    app_base_url: ctx.state.app_base_url,
+                    form,
+                    submission,
+                    dataPairs: toPairs(submission.data),
+                },
             });
         }
 

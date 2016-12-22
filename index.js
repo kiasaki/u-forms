@@ -19,10 +19,7 @@ config.load({
     old_secret: "keyboardcat",
     password_secret: "beeeeeeees",
     mailer_implementation: "console",
-    mailer_smtp_host: "",
-    mailer_smtp_port: 25,
-    mailer_smtp_user: "",
-    mailer_smtp_pass: "",
+    postmark_api_token: "", // used in prod with the "postmark" mailer
 });
 config.loadFromEnv();
 
