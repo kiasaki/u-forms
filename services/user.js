@@ -1,3 +1,4 @@
+const moment = require("moment");
 const User = require("../entities/user");
 
 class UserService {
@@ -5,16 +6,25 @@ class UserService {
         this.db = db;
     }
 
-    async findById(id) {
-        return await this.db.findWhere(User, {id});
+    findById(id) {
+        return this.db.findWhere(User, {id});
     }
 
-    async findByEmail(email) {
-        return await this.db.findWhere(User, {email});
+    findByEmail(email) {
+        return this.db.findWhere(User, {email});
     }
 
-    async create(entity) {
-        return await this.db.create(User, entity);
+    create(entity) {
+        return this.db.create(User, entity);
+    }
+
+    update(entity) {
+        entity.updated = moment().utc().toDate();
+        return this.db.update(User, entity);
+    }
+
+    destroy(entityId) {
+        return this.db.destroy(User, entityId);
     }
 }
 

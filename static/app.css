@@ -101,16 +101,6 @@ img {
   font-size: 13px;
 }
 
-.alert {
-  padding: 10px;
-  border-radius: 4px;
-  background: #F5F6FC;
-}
-.alert--error {
-  color: #a94442;
-  background: #F2DEDE;
-}
-
 /*
  * layout
  */

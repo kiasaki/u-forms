@@ -1,0 +1,46 @@
+{{> header}}
+
+<section class="page-content">
+    <div class="container">
+        <h1 class="title">Settings</h1>
+
+        <form class="form w-75" method="post" action="/settings">
+            {{#saved}}
+                <div class="mb2 pa2 br2 bg-washed-green dark-green">
+                    Settings saved!
+                </div>
+            {{/saved}}
+
+            {{#errors}}
+                <div class="mb2 pa2 br2 bg-washed-red dark-red">
+                    {{.}}
+                </div>
+            {{/errors}}
+
+            <div class="form-input">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="e.g., Dan Ward" value="{{user.name}}" />
+            </div>
+
+            <div class="form-input">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="e.g., dan.ward@e.corp" value="{{user.email}}" />
+            </div>
+
+            <div class="form-input">
+                <label>Password (optional)</label>
+                <input type="password" name="password" placeholder="e.g., ••••••••••••" />
+                <p>Only fill if you wish to change your current password.</p>
+            </div>
+
+            <div class="form-input">
+                <a href="/users/destroy" class="fr f6 mt2 dark-red">Delete my account</a>
+                <button class="btn btn--primary" type="submit">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{{> footer}}

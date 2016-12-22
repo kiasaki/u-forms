@@ -6,10 +6,8 @@
 
         <form class="form w-75" method="post" action="/forms/{{form.id}}/edit">
             {{#errors}}
-                <div class="form-input">
-                    <div class="alert alert--error">
-                        {{.}}
-                    </div>
+                <div class="mb2 pa2 br2 bg-washed-red dark-red">
+                    {{.}}
                 </div>
             {{/errors}}
 

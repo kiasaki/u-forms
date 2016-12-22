@@ -25,8 +25,8 @@ class FormService {
         return this.db.update(Form, entity);
     }
 
-    destroy(formId) {
-        return this.db.destroy(Form, formId);
+    destroy(entityId) {
+        return this.db.destroy(Form, entityId);
     }
 }
 

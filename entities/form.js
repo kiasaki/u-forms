@@ -13,6 +13,7 @@ Form.prototype.fields = [
     "userId",
     "name",
     "notify",
+    "email",
     "created",
     "updated",
 ];

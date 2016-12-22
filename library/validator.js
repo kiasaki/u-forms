@@ -31,13 +31,13 @@ exports.validate = function (spec) {
                 }
                 break;
             case "email":
-                if (value.indexOf("@") === -1) {
+                if (value && value.indexOf("@") === -1) {
                     errors.push(`The ${name} doesn't look like a valid one.`);
                     stop = true;
                 }
                 break;
             case "min":
-                if (value.length < validationArgs[0]) {
+                if (value && value.length < validationArgs[0]) {
                     errors.push(`The ${name} must be at least ${validationArgs[0]} long.`);
                     stop = true;
                 }

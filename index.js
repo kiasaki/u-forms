@@ -82,6 +82,12 @@ router.post("/f/:id([A-Z0-9]{26})", koaBody, submissionsController.create);
 router.get("/thank-you", submissionsController.thankYou);
 router.get("/submissions/:id([A-Z0-9]{26})/destroy", koaBody, requireUser, submissionsController.destroy);
 
+const usersController = container.create(require("./controllers/users"));
+router.get("/settings", requireUser, usersController.edit);
+router.post("/settings", koaBody, requireUser, usersController.edit);
+router.get("/users/destroy", requireUser, usersController.destroy);
+router.post("/users/destroy", koaBody, requireUser, usersController.destroy);
+
 // Post-Request Middlewares
 app.use(router.routes());
 app.use(router.allowedMethods());
