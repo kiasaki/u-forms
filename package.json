@@ -6,10 +6,11 @@
   "author": "Frederic Gingras <frederic@gingras.cc>",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^1.0.1",
+    "bcrypt": "1",
     "consolidate": "0.14.5",
     "hogan.js": "3",
     "humps": "2",
+    "is-fullwidth-code-point": "^2.0.0",
     "jsonwebtoken": "7",
     "knex": "0.12.6",
     "koa": "2",
