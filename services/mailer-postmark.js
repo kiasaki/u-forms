@@ -8,7 +8,7 @@ class PostmarkMailer {
     }
 
     send(spec) {
-        return promisify(this.client.sendEmail)({
+        return promisify(this.client.sendEmail.bind(this.client))({
             From: spec.from,
             To: spec.to,
             Subject: spec.subject,
