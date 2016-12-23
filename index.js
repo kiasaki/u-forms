@@ -34,7 +34,9 @@ container.load(require("./services/form"));
 container.load(require("./services/submission"));
 
 // Pre-Request Middlewares
+app.proxy = true;
 app.keys = [config.get("new_secret"), config.get("old_secret")];
+app.use(require("./library/middlewares/forceSSL"));
 app.use(require("./library/middlewares/globalTemplateState"));
 app.use(require("./library/middlewares/errorHandler"));
 app.use(require("./library/middlewares/views")({
