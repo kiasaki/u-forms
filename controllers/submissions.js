@@ -4,7 +4,8 @@ const Submission = require("../entities/submission");
 const keyDoesntStartWithUnderscore = ([k]) => k[0] !== "_";
 
 class SubmissionsController {
-    constructor(mailerService, formService, submissionService) {
+    constructor(config, mailerService, formService, submissionService) {
+        this.config = config;
         this.mailerService = mailerService;
         this.formService = formService;
         this.submissionService = submissionService;
@@ -44,7 +45,8 @@ class SubmissionsController {
         if (form.notify) {
             await this.mailerService.send({
                 to: form.email,
-                from: email,
+                from: this.config.get("app_email"),
+                replyTo: email,
                 subject: `[uForms] ${form.name}`,
                 templateName: "new-submission",
                 templateData: {
@@ -88,6 +90,6 @@ class SubmissionsController {
     }
 }
 
-SubmissionsController.dependencies = ["services:mailer", "services:form", "services:submission"];
+SubmissionsController.dependencies = ["config", "services:mailer", "services:form", "services:submission"];
 
 module.exports = SubmissionsController;

@@ -8,12 +8,19 @@ class PostmarkMailer {
     }
 
     send(spec) {
-        return promisify(this.client.sendEmail.bind(this.client))({
+        const email = {
             From: spec.from,
             To: spec.to,
             Subject: spec.subject,
             TextBody: spec.contentPlain,
-        });
+            HtmlBody: spec.contentHtml,
+        };
+
+        if (spec.replyTo) {
+            email.ReplyTo = spec.replyTo;
+        }
+
+        return promisify(this.client.sendEmail.bind(this.client))(email);
     }
 }
 
