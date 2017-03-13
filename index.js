@@ -33,6 +33,12 @@ container.load(require("./services/user"));
 container.load(require("./services/form"));
 container.load(require("./services/submission"));
 
+// Let's Encrypt!
+const challengeKey = "iwV21SCxAmG8jtdth-e42koecYivp7gKQlrsR4mhTE8";
+router.get(`/.well-known/acme-challenge/${challengeKey}`, function(ctx) {
+    ctx.body = process.env.LETS_ENCRYPT_CHALLENGE || "not set";
+});
+
 // Pre-Request Middlewares
 app.proxy = true;
 app.keys = [config.get("new_secret"), config.get("old_secret")];
@@ -89,11 +95,6 @@ router.get("/settings", requireUser, usersController.edit);
 router.post("/settings", koaBody, requireUser, usersController.edit);
 router.get("/users/destroy", requireUser, usersController.destroy);
 router.post("/users/destroy", koaBody, requireUser, usersController.destroy);
-
-const challengeKey = "b-WShsj_gMbvAbUV75XGCoEN6Tn5X9DSbXgOyKae1cU";
-router.get(`/.well-known/acme-challenge/${challengeKey}`, function(ctx) {
-    ctx.body = process.env.LETS_ENCRYPT_CHALLENGE || 'not set';
-});
 
 // Post-Request Middlewares
 app.use(router.routes());
