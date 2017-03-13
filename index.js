@@ -35,8 +35,7 @@ container.load(require("./services/form"));
 container.load(require("./services/submission"));
 
 // Let's Encrypt!
-const challengeKey = "iwV21SCxAmG8jtdth-e42koecYivp7gKQlrsR4mhTE8";
-router.get(`/.well-known/acme-challenge/${challengeKey}`, function(ctx) {
+router.get(/^\/\.well-known\/acme-challenge/, function(ctx) {
     ctx.body = process.env.LETS_ENCRYPT_CHALLENGE || "not set";
 });
 
