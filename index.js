@@ -90,6 +90,11 @@ router.post("/settings", koaBody, requireUser, usersController.edit);
 router.get("/users/destroy", requireUser, usersController.destroy);
 router.post("/users/destroy", koaBody, requireUser, usersController.destroy);
 
+const challengeKey = "b-WShsj_gMbvAbUV75XGCoEN6Tn5X9DSbXgOyKae1cU";
+router.get(`/.well-known/acme-challenge/${challengeKey}`, function(ctx) {
+    ctx.body = process.env.LETS_ENCRYPT_CHALLENGE || 'not set';
+});
+
 // Post-Request Middlewares
 app.use(router.routes());
 app.use(router.allowedMethods());
