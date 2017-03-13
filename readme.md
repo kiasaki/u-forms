@@ -79,6 +79,17 @@ node --harmony index.js
 {level: 'info', message: 'app started on port 3000'}
 ```
 
+## Renewing Let's Encrypt SSL Certificate
+
+```
+heroku config:set FORCE_SSL ''
+sudo letsencrypt renew --authenticator certbot-heroku:heroku -H kiasaki-uforms
+heroku certs:update \
+  /etc/letsencrypt/live/www.uforms.biz/cert.pem \
+  /etc/letsencrypt/live/www.uforms.biz/privkey.pem
+heroku config:set FORCE_SSL 1
+```
+
 ## License
 
 MIT. See `license` file.
