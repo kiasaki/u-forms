@@ -12,6 +12,7 @@ const config = container.load(require("./library/config"));
 config.load({
     port: 3000,
     root: __dirname,
+    force_ssl: false,
     app_name: "μForms",
     app_base_url: "localhost:3000",
     app_email: "hi@uforms.kiasaki.com",
